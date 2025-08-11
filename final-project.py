@@ -3,11 +3,11 @@ import requests
 import json
 from datetime import datetime
 
-# Custom CSS untuk mengubah warna chatbot menjadi biru gelap
+# Custom CSS untuk tema Saudi Arabia (warna hijau)
 st.markdown("""
     <style>
     [data-testid="stChatMessage"] {
-        background-color: #1565C0;
+        background-color: #006c35;  /* Warna hijau Saudi */
         color: white;
     }
     .stMarkdown {
@@ -16,17 +16,31 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🤖 Chatbot Seperti ChatGPT")
+st.title("🕌 Saudi Arabia Information Bot")
+st.markdown("""
+Selamat datang di Saudi Arabia Information Bot! Saya siap membantu Anda dengan informasi tentang:
+- Sejarah dan Budaya Saudi Arabia
+- Tempat-tempat bersejarah dan wisata
+- Kota-kota penting (Mekkah, Madinah, Riyadh, dll)
+- Ekonomi dan perkembangan terkini
+- Haji dan Umrah
+- Dan topik lainnya seputar Saudi Arabia
+
+Silakan ajukan pertanyaan Anda!
+""")
 
 def get_ai_rensponse(user_input, chat_history):
+    # Menambahkan konteks Saudi Arabia ke setiap pertanyaan
+    saudi_context = "Anda adalah asisten informasi yang ahli tentang Saudi Arabia. Berikan informasi yang akurat dan terkini tentang Saudi Arabia. "
+    enhanced_input = saudi_context + user_input
 
     try:
-        api_key = "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"
+        api_key = "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"
     except KeyError:
         st.error("API key tidak ditemukan. Pastikan Anda telah mengatur API key di secrets.")
         return "Error: API key tidak ditemukan."
 
-    message = chat_history + [{"role": "user", "content": user_input}] 
+    message = chat_history + [{"role": "user", "content": enhanced_input}] 
 
     try: 
         response = requests.post(
