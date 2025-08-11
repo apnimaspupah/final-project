@@ -35,7 +35,7 @@ def get_ai_rensponse(user_input, chat_history):
     enhanced_input = saudi_context + user_input
 
     try:
-        api_key = "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"
+        api_key = "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"
     except KeyError:
         st.error("API key tidak ditemukan. Pastikan Anda telah mengatur API key di secrets.")
         return "Error: API key tidak ditemukan."
